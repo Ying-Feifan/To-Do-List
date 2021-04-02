@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<%- include("header") -%>
+
+<div class="box" id="heading">
+  <h1>Welcome to <%= customName %></h1>
+  <h1> Today is <%= day %></h1>
+</div>
+<div class="box">
+
+  <% listItems.forEach(function(item){ %>
+
+  <form class="item" action="/delete" method="post">
+    <input type="checkbox" name="itemId" value="<%= item._id %>" onchange="this.form.submit()">
+    <label><%= item.item %></label>
+    <input type="hidden" name="listName" value= <%= customName %>>
+  </form>
+  <% }); %>
+  <form class="item" action="/" method="post">
+    <input type="text" name="newItem" placeholder="New Item">
+    <button type="submit" name="listName" value= <%= customName %>>+</button>
+  </form>
+</div>
+<%- include("footer") -%>
